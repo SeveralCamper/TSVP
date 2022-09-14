@@ -67,19 +67,19 @@ int main() {
     switch (choice) {
         case 1:
             std::cout << "\033c" << std::endl;
-            BubleSort(array, size);
+            bubble_sort(array, size);
             std::cout << "Your array:" << std::endl;
             print_array(array, size);
             break;
         case 2:
             std::cout << "\033c" << std::endl;
-            SelectSort(array, size);
+            select_sort(array, size);
             std::cout << "Your array:" << std::endl;
             print_array(array, size);
             break;
         case 3:
             std::cout << "\033c" << std::endl;
-            fill_rand(array, size, 0, 100);
+            merge_sort(array, size);
             std::cout << "Your array:" << std::endl;
             print_array(array, size);
             break;

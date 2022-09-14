@@ -7,6 +7,7 @@
 #include <iostream>
 #include "array_processing_methods.h"
 
-void BubleSort(double* array, int array_length);
-void SelectSort(double* array, int array_length);
+void bubble_sort(double* array, int array_length);
+void merge_sort(double* array, int array_length);
+void select_sort(double* array, int array_length);
 
