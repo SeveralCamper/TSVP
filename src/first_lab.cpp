@@ -70,7 +70,7 @@ void merge_sort(double* array, int array_length) {
       }
     }
 
-    // Print visual
+    // Print visual (arr less than 16)
     /* if (k == 1) {
       for (int first_iter = 0; first_iter < array_length; first_iter++) {
         std::cout << array[first_iter] << " ";
