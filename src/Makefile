@@ -1,54 +1,43 @@
 CC = g++ -std=c++17
 CFLAGS = -Wall -Werror -Wextra
-TESTTARGET = test/s21_test_matrix_oop
+TARGET = bin/lab
 OS=$(shell uname)
 
 ifeq ($(OS), Linux)
-	LIBS= -lgtest -lpthread -pthread -lrt -lm -lsubunit
-	LEAKS= valgrind --track-origins=yes --leak-check=full  ./test/s21_test_matrix_oop
+	LIBS= -lpthread -pthread -lrt -lm -lsubunit
 else
-	LIBS=-lcheck -lgtest -pthread
-	LEAKS=leaks --atExit -- ./test/s21_test_matrix_oop
+	LIBS=-lcheck -pthread
 endif
 
-all: clean s21_matrix_oop.a test checks
+all: clean first_lab.a checks
 
-$(TARGET): s21_matrix_oop.o s21_matrix_oop.a
-	$(CC) s21_matrix_oop.o -L. s21_matrix_oop.a $(CFLAGS) $(LIBS) -o $@
+$(TARGET): first_lab.o array_processing_methods.o main.o first_lab.a 
+	$(CC) first_lab.o array_processing_methods.o main.o -L. first_lab.a $(CFLAGS) $(LIBS) -o $@
 
-s21_matrix_oop.o: s21_matrix_oop.cpp
-	$(CC) -c s21_matrix_oop.cpp $(CFLAGS) $(LIBS) -o $@
+main.o: main.cpp
+	$(CC) -c main.cpp $(CFLAGS) $(LIBS) -o $@
 
-s21_matrix_oop.a: s21_matrix_oop.o
+first_lab.o: first_lab.cpp
+	$(CC) -c first_lab.cpp $(CFLAGS) $(LIBS) -o $@
+
+array_processing_methods.o: array_processing_methods.cpp
+	$(CC) -c array_processing_methods.cpp $(CFLAGS) $(LIBS) -o $@
+
+first_lab.a: first_lab.o array_processing_methods.o main.o
 	ar rcs $@ $^
 	ranlib $@
 	cp $@ lib$@
 
-run: clean start
-
-start:
-	g++ s21_matrix_oop.cpp $(CFLAGS) -lm
-	./a.out
-
-$(TESTTARGET): s21_matrix_oop.a test/s21_test_matrix_oop.o s21_matrix_oop.o
-	$(CC) test/s21_test_matrix_oop.cpp s21_matrix_oop.o $(LIBS) -o $@
-
-test/s21_test_matrix_oop.o: test/s21_test_matrix_oop.cpp s21_matrix_oop.h
-	$(CC) -c test/s21_test_matrix_oop.cpp $(LIBS)  -o $@ 
-	$(CC) -c s21_matrix_oop.cpp -lgtest $(LIBS) -o $@
-
-test: $(TESTTARGET)
-	./$(TESTTARGET)
+run: clean $(TARGET)
+	./bin/lab
 
 clean:	
-		rm -rf s21_test_matrix_oop s21_matrix_oop 
-		rm -rf *.o *.so *.a fizz *.gc* *.info report *.out *.gcda *.so *.gcno *.info
-		rm -rf test/*.o test/*.so test/*.a  test/*.gcda  test/*.so  test/*.gcno  test/*.info test/s21_test_matrix_oop
+	rm -rf first_lab  
+	rm -rf *.o *.so *.a fizz *.gc* *.info report *.out *.gcda *.so *.gcno *.info
 
 rebuild: clean all
 
 checks:
-	$(LEAKS)
 	python3 ../materials/linters/cpplint.py *.cpp *.h
 	
-.PHONY: all clean test s21_matrix_oop.a
+.PHONY: all clean first_lab.a
