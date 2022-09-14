@@ -9,7 +9,7 @@ else
 	LIBS=-lcheck -pthread
 endif
 
-all: clean first_lab.a checks
+all: clean first_lab.a checks run
 
 $(TARGET): first_lab.o array_processing_methods.o main.o first_lab.a 
 	$(CC) first_lab.o array_processing_methods.o main.o -L. first_lab.a $(CFLAGS) $(LIBS) -o $@
@@ -32,7 +32,7 @@ run: clean $(TARGET)
 	./bin/lab
 
 clean:	
-	rm -rf first_lab  
+	rm -rf bin/lab  
 	rm -rf *.o *.so *.a fizz *.gc* *.info report *.out *.gcda *.so *.gcno *.info
 
 rebuild: clean all
