@@ -1,6 +1,6 @@
 CC = g++ -std=c++17
 CFLAGS = -Wall -Werror -Wextra
-TARGET = bin/lab
+TARGET = ../bin/lab
 OS=$(shell uname)
 
 ifeq ($(OS), Linux)
@@ -29,10 +29,10 @@ first_lab.a: first_lab.o array_processing_methods.o main.o
 	cp $@ lib$@
 
 run: clean $(TARGET)
-	./bin/lab
+	./$(TARGET)
 
 clean:	
-	rm -rf bin/lab  
+	rm -rf ../bin/lab 
 	rm -rf *.o *.so *.a fizz *.gc* *.info report *.out *.gcda *.so *.gcno *.info
 
 rebuild: clean all
