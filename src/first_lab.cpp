@@ -42,7 +42,6 @@ void merge_sort(double* array, int array_length) {
     for (int left = 0; left + k < array_length; left += k * 2) {
       first_len = left + k;
       second_len = first_len + k;
-      count_comparisons++;
       if (second_len > array_length) {
         second_len = array_length;
       }
@@ -57,11 +56,9 @@ void merge_sort(double* array, int array_length) {
         tmp_iter++;
       }
       while (first_iter < first_len) {
-        count_permutations++;
         tmp_array[tmp_iter++] = array[first_iter++];
       }
       while (second_iter < second_len) {
-        count_permutations++;
         tmp_array[tmp_iter++] = array[second_iter++];
       }
       for (tmp_iter = left; tmp_iter < second_len; tmp_iter++) {
@@ -69,37 +66,6 @@ void merge_sort(double* array, int array_length) {
         array[tmp_iter] = tmp_array[tmp_iter];
       }
     }
-
-    // Print visual (arr less than 16)
-    /* if (k == 1) {
-      for (int first_iter = 0; first_iter < array_length; first_iter++) {
-        std::cout << array[first_iter] << " ";
-        if (first_iter % 2) {
-          std::cout << "  ";
-        }
-      }
-    std::cout << std::endl << std::endl;
-    }
-
-    if (k == 2) {
-      for (int first_iter = 0, count = 1; first_iter < array_length; first_iter++, count++) {
-        std::cout << array[first_iter] << " ";
-        if ((count % 4) == 0) {
-          std::cout << "  ";
-        }
-      }
-      std::cout << std::endl << std::endl;
-    }
-
-    if (k == 4) {
-      for (int first_iter = 0, count = 1; first_iter < array_length; first_iter++, count++) {
-        std::cout << array[first_iter] << " ";
-        if ((count % 8) == 0) {
-          std::cout << "  ";
-        }
-      }
-      std::cout << std::endl << std::endl;
-    } */
   }
   std::cout << "Comparisons: " << count_comparisons << std::endl;
   std::cout << "Permutations: " << count_permutations << std::endl;

@@ -13,7 +13,7 @@ all: clean first_lab.a checks run
 
 $(TARGET): first_lab.o array_processing_methods.o main.o first_lab.a 
 	$(CC) first_lab.o array_processing_methods.o main.o -L. first_lab.a $(CFLAGS) $(LIBS) -o $@
-
+ 
 main.o: main.cpp
 	$(CC) -c main.cpp $(CFLAGS) $(LIBS) -o $@
 
