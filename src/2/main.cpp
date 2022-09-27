@@ -25,23 +25,27 @@ int main() {
     std::cout << "\033c";
     print_complex_array(complex_array, size);
 
-    /* std::complex<double> *fft_array = new std::complex<double>[size];
-    if (fft_array == nullptr) {
+    std::complex<double> *dft_array = new std::complex<double>[size];
+    if (dft_array == nullptr) {
         throw std::runtime_error("Error: Bad memory alloc");
     }
 
-    fft_array = fast_fourier_transform(complex_array);
-    std::cout << Fast Fourier Transform << std::endl;
-    print_complex_array(fft_array, size);
+    std::complex<double> imaginary_unit_1(0, 0);
+    std::complex<double> imaginary_unit_2(1, 0);
 
-    std::complex<double> *rev_fft_array = new std::complex<double>[size];
-    if (rev_fft_array == nullptr) {
+    dft_array = discrete_fourier_transform(complex_array, size);
+    std::cout << "Discrete Fourier Transform" << std::endl;
+    print_complex_array(dft_array, size);
+
+    std::complex<double> *rev_dft_array = new std::complex<double>[size];
+    if (rev_dft_array == nullptr) {
         throw std::runtime_error("Error: Bad memory alloc");
     }
+    std::cout << std::endl;
 
-    rev_fft_array = reverse_fast_fourier_transform(complex_array);
-    std::cout << Reversed Fast Fourier Transform << std::endl;
-    print_complex_array(rev_fft_array, size); */
+    rev_dft_array = reverse_discrete_fourier_transform(dft_array, size);
+    std::cout << "Reversed Discrete Fourier Transform" << std::endl;
+    print_complex_array(rev_dft_array, size);
 
     return 0;
 }
