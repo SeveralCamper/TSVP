@@ -9,24 +9,23 @@ else
 	LIBS=-lcheck -pthread
 endif
 
-all: clean first_lab.a checks run
+all: clean 1/first_lab.a checks run
 
-$(TARGET): first_lab.o array_processing_methods.o main.o first_lab.a 
-	$(CC) first_lab.o array_processing_methods.o main.o -L. first_lab.a $(CFLAGS) $(LIBS) -o $@
+$(TARGET): 1/first_lab.o array_processing_methods.o 1/main.o 1/first_lab.a 
+	$(CC) 1/first_lab.o array_processing_methods.o 1/main.o -L. 1/first_lab.a $(CFLAGS) $(LIBS) -o $@
  
-main.o: main.cpp
-	$(CC) -c main.cpp $(CFLAGS) $(LIBS) -o $@
+1/main.o: 1/main.cpp
+	$(CC) -c 1/main.cpp $(CFLAGS) $(LIBS) -o $@
 
-first_lab.o: first_lab.cpp
-	$(CC) -c first_lab.cpp $(CFLAGS) $(LIBS) -o $@
+1/first_lab.o: 1/first_lab.cpp
+	$(CC) -c 1/first_lab.cpp $(CFLAGS) $(LIBS) -o $@
 
 array_processing_methods.o: array_processing_methods.cpp
 	$(CC) -c array_processing_methods.cpp $(CFLAGS) $(LIBS) -o $@
 
-first_lab.a: first_lab.o array_processing_methods.o main.o
+1/first_lab.a: 1/first_lab.o array_processing_methods.o 1/main.o
 	ar rcs $@ $^
 	ranlib $@
-	cp $@ lib$@
 
 run: clean $(TARGET)
 	./$(TARGET)
@@ -40,4 +39,4 @@ rebuild: clean all
 checks:
 	python3 ../materials/linters/cpplint.py *.cpp *.h
 	
-.PHONY: all clean first_lab.a
+.PHONY: all clean 1/first_lab.a

@@ -43,7 +43,6 @@ int main() {
         case 4:
             std::cout << "\033c";
             for (int i = 0; i < size; i++) {
-                std::cout << "\033c";
                 std::cout << "Please, enter array[" << i << "]: ";
                 std::cin >> array[i];
             }
