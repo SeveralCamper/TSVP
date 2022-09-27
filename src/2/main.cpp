@@ -22,14 +22,26 @@ int main() {
         iter++;
     }
     file.close();
-    iter = 0;
     std::cout << "\033c";
+    print_complex_array(complex_array, size);
 
-    std::cout << "Your complex array:" << std::endl;
-    while (iter < size) {
-        std::cout << complex_array[iter] << std::endl;
-        iter++;
+    /* std::complex<double> *fft_array = new std::complex<double>[size];
+    if (fft_array == nullptr) {
+        throw std::runtime_error("Error: Bad memory alloc");
     }
+
+    fft_array = fast_fourier_transform(complex_array);
+    std::cout << Fast Fourier Transform << std::endl;
+    print_complex_array(fft_array, size);
+
+    std::complex<double> *rev_fft_array = new std::complex<double>[size];
+    if (rev_fft_array == nullptr) {
+        throw std::runtime_error("Error: Bad memory alloc");
+    }
+
+    rev_fft_array = reverse_fast_fourier_transform(complex_array);
+    std::cout << Reversed Fast Fourier Transform << std::endl;
+    print_complex_array(rev_fft_array, size); */
 
     return 0;
 }
