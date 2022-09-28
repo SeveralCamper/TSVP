@@ -20,8 +20,11 @@ std::complex<double> *discrete_fourier_transform(std::complex<double> *complex_a
         for (int j = 0; j < size; j++) {
             resault_el += pow(M_E, std::complex<double>(-2 * M_PI * j * i) * imaginary_unit /
             (std::complex<double>) size) * (std::complex<double>) complex_array[j];
-            //  resault_el += (cos(std::complex<double>(-2 * M_PI * j * i) / (std::complex<double>)size)
-            //  + imaginary_unit * sin(-2 * M_PI * j * i / size)) * complex_array[j]; //  for exam
+            /* std::cout << std::complex<double>(-2 * M_PI * j * i * imaginary_unit) << std::endl;
+            std::cout << std::complex<double>(-2 * M_PI * j * i * imaginary_unit /
+            (std::complex<double>) size) << std::endl;
+            std::cout << pow(M_E, std::complex<double>(-2 * M_PI * j * i) * imaginary_unit /
+            (std::complex<double>) size) * (std::complex<double>) complex_array[j] << std::endl; */
             std::cout.precision(10);
             std::cout << std::fixed << resault_el << std::endl;
         }
