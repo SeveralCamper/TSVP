@@ -30,9 +30,6 @@ int main() {
         throw std::runtime_error("Error: Bad memory alloc");
     }
 
-    std::complex<double> imaginary_unit_1(0, 0);
-    std::complex<double> imaginary_unit_2(1, 0);
-
     dft_array = discrete_fourier_transform(complex_array, size);
     std::cout << "Discrete Fourier Transform" << std::endl;
     print_complex_array(dft_array, size);

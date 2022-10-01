@@ -1,4 +1,4 @@
-#include "second_lab.h"
+#include "third_lab.h"
 
 int main() {
     int size = 0;
@@ -30,22 +30,28 @@ int main() {
         throw std::runtime_error("Error: Bad memory alloc");
     }
 
-    std::complex<double> imaginary_unit_1(0, 0);
-    std::complex<double> imaginary_unit_2(1, 0);
-
     dft_array = discrete_fourier_transform(complex_array, size);
     std::cout << "Discrete Fourier Transform" << std::endl;
     print_complex_array(dft_array, size);
 
-    std::complex<double> *rev_dft_array = new std::complex<double>[size];
-    if (rev_dft_array == nullptr) {
+    std::complex<double> *sfft_array = new std::complex<double>[size];
+    if (sfft_array == nullptr) {
+        throw std::runtime_error("Error: Bad memory alloc");
+    }
+
+    sfft_array = semi_fast_fourier_transform(complex_array, 4, 2);
+    std::cout << "Semi Fast Fourier Transform" << std::endl;
+    print_complex_array(sfft_array, size);
+
+    std::complex<double> *rev_sfft_array = new std::complex<double>[size];
+    if (rev_sfft_array == nullptr) {
         throw std::runtime_error("Error: Bad memory alloc");
     }
     std::cout << std::endl;
 
-    rev_dft_array = reverse_discrete_fourier_transform(dft_array, size);
-    std::cout << "Reversed Discrete Fourier Transform" << std::endl;
-    print_complex_array(rev_dft_array, size);
+    rev_sfft_array = reverse_semi_fast_fourier_transform(sfft_array, 4, 2);
+    std::cout << "Reversed Semi Fast Fourier Transform" << std::endl;
+    print_complex_array(rev_sfft_array, size);
 
     return 0;
 }
