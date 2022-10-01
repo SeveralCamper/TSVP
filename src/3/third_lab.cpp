@@ -1,4 +1,4 @@
-#include "second_lab.h"
+#include "third_lab.h"
 
 void print_complex_array(std::complex<double> *complex_array, int size) {
     int iter = 0;

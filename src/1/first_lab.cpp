@@ -5,7 +5,7 @@ void bubble_sort(double* array, int array_length) {
   for (int i = 0; i < array_length - 1; i++) {
     for (int j = 0; j < array_length - 1; j++) {
       count_comparisons++;
-      if (array[j] > array[j + 1]) {
+      if (array[j] < array[j + 1]) {
         std::swap(array[j], array[j + 1]);
         count_permutations += 1;
       }
@@ -25,8 +25,10 @@ void select_sort(double* array, int array_length) {
         min_array_index = j;
       }
     }
-    std::swap(array[min_array_index], array[i]);
-    count_permutations += 1;
+    if (array[min_array_index] != array[i]) {
+      std::swap(array[min_array_index], array[i]);
+      count_permutations += 1;
+    }
   }
   std::cout << "Comparisons: " << count_comparisons << std::endl;
   std::cout << "Permutations: " << count_permutations << std::endl;
