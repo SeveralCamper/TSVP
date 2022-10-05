@@ -153,20 +153,35 @@ std::complex<double> *reverse_semi_fast_fourier_transform(std::complex<double> *
     return sfft_array;
 }
 
-std::complex<double> *semi_fast_fourier_convolution(std::complex<double> *array_1, std::complex<double> *array_2, int rows, int columns) {
+std::complex<double> *semi_fast_fourier_convolution(std::complex<double> *array_1_convolved,
+    std::complex<double> *array_2_covloved, int rows, int columns) {
     std::complex<double> *resault = new std::complex<double>[rows * columns];
     resault = reverse_semi_fast_fourier_transform(multiply_arrays(
-        semi_fast_fourier_transform(array_1, rows, columns), semi_fast_fourier_transform(array_2, rows, columns), rows * columns), rows, columns);
+        multiply_arrays_num(array_1_convolved, rows * columns), array_2_covloved, rows * columns),
+        rows, columns);
 
     return resault;
 }
 
-std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::complex<double> *array_2, int size) {
+std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::complex<double> *array_2,
+    int size) {
     std::complex<double> *resault = new std::complex<double>[size];
     for (int i = 0; i < size; i++) {
         resault[i] = array_1[i] * array_2[i];
     }
 
-    return resault;    
+    return resault;
 }
 
+std::complex<double> *multiply_arrays_num(std::complex<double> *array_1, int size) {
+    std::complex<double> *resault = new std::complex<double>[size];
+    for (int i = 0; i < size; i++) {
+        resault[i] = array_1[i] * (std::complex<double>)size;
+    }
+
+    return resault;
+}
+
+std::complex<double> *cummon_convolution(std::complex<double> *array_1, std::complex<double> *array_2, int size) {
+    
+}
