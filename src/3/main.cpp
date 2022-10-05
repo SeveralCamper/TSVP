@@ -1,7 +1,7 @@
 #include "third_lab.h"
 
 int main() {
-    int flag = 0;
+    // int flag = 0;
 
     int size = 0;
     std::cout << "\033c";
@@ -11,7 +11,7 @@ int main() {
         throw std::runtime_error("Error: Input size is less ther one");
     }
     std::complex<double> *complex_array = new std::complex<double>[size];
-    std::complex<double> *complex_array_2 = new std::complex<double>[size];
+    std::complex<double> *complex_array_2 = new std::complex<double>[2];
     if (complex_array == nullptr || complex_array_2 == nullptr) {
         throw std::runtime_error("Error: Bad memory alloc");
     }
@@ -22,13 +22,18 @@ int main() {
     while (file >> real_part >> imaginary_part && iter < size) {
         std::complex<double> new_complex(real_part, imaginary_part);
         complex_array[iter] = new_complex;
-        complex_array_2[iter] = new_complex;
+        // complex_array_2[iter] = new_complex;
         iter++;
     }
+
+    complex_array_2[0] = 5;
+    complex_array_2[1] = 6;
+
+
     file.close();
     std::cout << "\033c";
     print_complex_array(complex_array, size);
-    print_complex_array(complex_array_2, size);
+    print_complex_array(complex_array_2, 2);
 
     std::complex<double> *dft_array = new std::complex<double>[size];
     if (dft_array == nullptr) {
@@ -36,7 +41,7 @@ int main() {
     }
 
     std::complex<double> *array = new std::complex<double>[size];
-    std::complex<double> *array_2 = new std::complex<double>[size];
+    std::complex<double> *array_2 = new std::complex<double>[2];
     if (array == nullptr || array_2 == nullptr) {
         throw std::runtime_error("Error: Bad memory alloc");
     }
@@ -50,16 +55,15 @@ int main() {
     std::cout << "1. Cummon convolution" << std::endl;
     std::cout << "2. DFFT convolution" << std::endl;
     std::cout << "3. SFFT convolution" << std::endl;
-    std::cin >> flag;
-    if (flag == 1) {
-        std::complex<double> *res_array = new std::complex<double>[size];
+    // std::cin >> flag;
+    // if (flag == 1) {
         if (res_array == nullptr) {
             throw std::runtime_error("Error: Bad memory alloc");
         }
-        res_array = cummon_convolution(complex_array, complex_array_2, size, size);
+        res_array = cummon_convolution(complex_array, complex_array_2, size, 2);
         std::cout << "Cummon Convolved" << std::endl;
-        print_complex_array(res_array, 15);
-    } else if (flag == 2) {
+        print_complex_array(res_array, 5);
+    // } else if (flag == 2) {
         array = discrete_fourier_transform(complex_array, 8);
         // std::cout << "Semi Fast Fourier Transform arr_1" << std::endl;
         // print_complex_array(sfft_array, size);
@@ -68,8 +72,8 @@ int main() {
         // print_complex_array(sfft_array_2, size);
         res_array = semi_fast_fourier_convolution(array, array_2, 4, 2);
         std::cout << "Convolved Discrete Fourier Transform" << std::endl;
-        print_complex_array(res_array, size);
-    } else if (flag == 3) {
+        print_complex_array(res_array, 5);
+    // } else if (flag == 3) {
         array = semi_fast_fourier_transform(complex_array, 4, 2);
         // std::cout << "Semi Fast Fourier Transform arr_1" << std::endl;
         // print_complex_array(sfft_array, size);
@@ -78,10 +82,10 @@ int main() {
         // print_complex_array(sfft_array_2, size);
         res_array = semi_fast_fourier_convolution(array, array_2, 4, 2);
         std::cout << "Convolved Semi Fast Fourier Transform" << std::endl;
-        print_complex_array(res_array, size);
-    } else {
+        print_complex_array(res_array, 5);
+    // } else {
         std::cout << "Invalid input" << std::endl;
-    }
+    // }
 
     return 0;
 }

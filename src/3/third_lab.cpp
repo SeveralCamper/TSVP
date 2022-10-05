@@ -11,14 +11,13 @@ void print_complex_array(std::complex<double> *complex_array, int size) {
 }
 
 std::complex<double> *discrete_fourier_transform(std::complex<double> *complex_array, int size) {
-    // int opertions = 0;
     std::complex<double> imaginary_unit(0, 1);
     std::complex<double> *dft_array = new std::complex<double>[size];
 
     for (int i = 0; i < size; i++) {
         std::complex<double>resault_el(0, 0);
         for (int j = 0; j < size; j++) {
-            // opertions += 5;
+            GLOBAL_P += 5;
             resault_el += pow(M_E, std::complex<double>(-2 * M_PI * j * i) * imaginary_unit /
             (std::complex<double>) size) * (std::complex<double>) complex_array[j];
         }
@@ -38,6 +37,7 @@ std::complex<double> *reverse_discrete_fourier_transform(std::complex<double> *c
     for (int i = 0; i < size; i++) {
         std::complex<double>resault_el(0, 0);
         for (int j = 0; j < size; j++) {
+            GLOBAL_P += 5;
             resault_el += pow(M_E, std::complex<double>(2 * M_PI * j * i) * imaginary_unit /
             (std::complex<double>) size) * (std::complex<double>) complex_array[j];
         }
@@ -49,7 +49,7 @@ std::complex<double> *reverse_discrete_fourier_transform(std::complex<double> *c
 
 std::complex<double> *semi_fast_fourier_transform(std::complex<double> *complex_array,
     int rows, int columns) {
-    // int opertions = 0;
+    GLOBAL_P = 0;
     std::complex<double> imaginary_unit(0, 1);
     std::complex<double> **frist_matrix = new std::complex<double> *[rows];
     for (int i = 0; i < rows; i++) {
@@ -66,7 +66,7 @@ std::complex<double> *semi_fast_fourier_transform(std::complex<double> *complex_
         for (int j = 0; j < columns; j++) {
             element = 0;
             for (int k = 0; k < rows; k++) {
-                // opertions += 5;
+                GLOBAL_P += 5;
                 element += (std::complex<double>) complex_array[j + columns * k] * pow(M_E,
                 (std::complex<double>(-2 * M_PI  * k * i) * imaginary_unit /
                 (std::complex<double>) rows));
@@ -81,7 +81,7 @@ std::complex<double> *semi_fast_fourier_transform(std::complex<double> *complex_
         for (int j = 0; j < columns; j++) {
             element = 0;
             for (int k = 0; k < columns; k++) {
-                // opertions += 5;
+                GLOBAL_P += 5;
                 element += frist_matrix[i][k] * pow(M_E,
                 (std::complex<double>(-2 * M_PI  * k * (i + rows * j)) * imaginary_unit /
                 (std::complex<double>) (rows * columns)));
@@ -122,6 +122,7 @@ std::complex<double> *reverse_semi_fast_fourier_transform(std::complex<double> *
         for (int j = 0; j < columns; j++) {
             element = 0;
             for (int k = 0; k < rows; k++) {
+                GLOBAL_P += 5;
                 element += complex_array[j + columns * k] * pow(M_E,
                 (std::complex<double>(2 * M_PI  * k * i) * imaginary_unit /
                 (std::complex<double>) rows));
@@ -135,6 +136,7 @@ std::complex<double> *reverse_semi_fast_fourier_transform(std::complex<double> *
         for (int j = 0; j < columns; j++) {
             element = 0;
             for (int k = 0; k < columns; k++) {
+                GLOBAL_P += 5;
                 element += frist_matrix[i][k] * pow(M_E,
                 (std::complex<double>(2 * M_PI  * k * (i + rows * j)) * imaginary_unit /
                 (std::complex<double>) (rows * columns)));
@@ -166,13 +168,13 @@ std::complex<double> *semi_fast_fourier_convolution(std::complex<double> *array_
 
 std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::complex<double> *array_2,
     int size) {
-    int operations = 0;
+    // int operations = 0;
     std::complex<double> *resault = new std::complex<double>[size];
     for (int i = 0; i < size; i++) {
-        operations += 1;
+        GLOBAL_P += 1;
         resault[i] = array_1[i] * array_2[i];
     }
-    std::cout << "Operations: " << operations << std::endl;
+    // std::cout << "Operations: " << operations << std::endl;
 
     return resault;
 }
@@ -180,6 +182,7 @@ std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::comple
 std::complex<double> *multiply_arrays_num(std::complex<double> *array_1, int size) {
     std::complex<double> *resault = new std::complex<double>[size];
     for (int i = 0; i < size; i++) {
+        GLOBAL_P += 1;
         resault[i] = array_1[i] * (std::complex<double>)size;
     }
 
@@ -195,6 +198,7 @@ std::complex<double> *cummon_convolution(std::complex<double> *array_1, std::com
             opertions += 1;
             resault[i + j] += array_1[i] * array_2[j];
         }
+        opertions += 1;
     }
     std::cout << "Operations: " << opertions << std::endl << std::endl;
 
