@@ -8,19 +8,22 @@
 #include <complex>
 #include "../array_processing_methods.h"
 
-int GLOBAL_P = 0;
-
 void print_complex_array(std::complex<double> *complex_array, int size);
 
-std::complex<double> *multiply_arrays_num(std::complex<double> *array_1, int size);
-std::complex<double> *discrete_fourier_transform(std::complex<double> *complex_array, int size);
-std::complex<double> *reverse_discrete_fourier_transform(std::complex<double> *complex_array, int size);
-std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::complex<double> *array_2, int size);
-std::complex<double> *semi_fast_fourier_transform(std::complex<double> *complex_array, int rows, int columns);
-std::complex<double> *cummon_convolution(std::complex<double> *array_1, std::complex<double> *array_2,
+std::complex<double> *multiply_arrays_num(std::complex<double> *array_1, int size,
+    int *GLOBAL_OPERATIONS);
+std::complex<double> *discrete_fourier_transform(std::complex<double> *complex_array,
+    int size, int *GLOBAL_OPERATIONS);
+std::complex<double> *reverse_discrete_fourier_transform(std::complex<double> *complex_array,
+    int size, int *GLOBAL_OPERATIONS);
+std::complex<double> *multiply_arrays(std::complex<double> *array_1, std::complex<double> *array_2,
+    int size, int *GLOBAL_OPERATIONS);
+std::complex<double> *semi_fast_fourier_transform(std::complex<double> *complex_array, int rows,
+    int columns, int *GLOBAL_OPERATIONS);
+std::complex<double> *common_convolution(std::complex<double> *array_1, std::complex<double> *array_2,
     int size_1, int size_2);
 std::complex<double> *reverse_semi_fast_fourier_transform(std::complex<double> *complex_array,
-    int rows, int columns);
+    int rows, int columns, int *GLOBAL_OPERATIONS);
 std::complex<double> *semi_fast_fourier_convolution(std::complex<double> *array_1_convolved,
-    std::complex<double> *array_2_covloved, int rows, int columns);
+    std::complex<double> *array_2_covloved, int rows, int columns, int *GLOBAL_OPERATIONS);
 
