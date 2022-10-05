@@ -52,21 +52,13 @@ int main() {
     std::cout << "3. SFFT convolution" << std::endl;
     std::cin >> flag;
     if (flag == 1) {
-        dft_array = discrete_fourier_transform(complex_array, size);
-        std::cout << "Discrete Fourier Transform" << std::endl;
-        print_complex_array(dft_array, size);
-
-        res_array = semi_fast_fourier_transform(complex_array, 4, 2);
-        std::cout << "Semi Fast Fourier Transform" << std::endl;
-        print_complex_array(res_array, size);
-
         std::complex<double> *res_array = new std::complex<double>[size];
         if (res_array == nullptr) {
             throw std::runtime_error("Error: Bad memory alloc");
         }
-        res_array = cummon_convolution(res_array, 4, 2);
+        res_array = cummon_convolution(complex_array, complex_array_2, size, size);
         std::cout << "Cummon Convolved" << std::endl;
-        print_complex_array(res_array, size);
+        print_complex_array(res_array, 15);
     } else if (flag == 2) {
         array = discrete_fourier_transform(complex_array, 8);
         // std::cout << "Semi Fast Fourier Transform arr_1" << std::endl;
