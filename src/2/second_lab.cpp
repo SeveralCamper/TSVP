@@ -17,24 +17,13 @@ std::complex<double> *discrete_fourier_transform(std::complex<double> *complex_a
 
     for (int i = 0; i < size; i++) {
         std::complex<double>resault_el(0, 0);
-        // std::cout << std::endl;
-        // std::cout << "Iteration: " << i + 1 << std::endl;
         for (int j = 0; j < size; j++) {
             opertions += 5;
             resault_el += pow(M_E, std::complex<double>(-2 * M_PI * j * i) * imaginary_unit /
             (std::complex<double>) size) * (std::complex<double>) complex_array[j];
-            /* std::cout << std::complex<double>(-2 * M_PI * j * i * imaginary_unit) << std::endl;
-            std::cout << std::complex<double>(-2 * M_PI * j * i * imaginary_unit /
-            (std::complex<double>) size) << std::endl;
-            std::cout << pow(M_E, std::complex<double>(-2 * M_PI * j * i) * imaginary_unit /
-            (std::complex<double>) size) * (std::complex<double>) complex_array[j] << std::endl; */
-            // std::cout.precision(10);
-            // std::cout << std::fixed << resault_el << std::endl;
         }
         resault_el *= ((double)1 / (double)size);
         dft_array[i] = resault_el;
-        // std::cout << dft_array[i] << std::endl;
-        // std::cout << std::endl;
     }
 
     std::cout << opertions << std::endl;
