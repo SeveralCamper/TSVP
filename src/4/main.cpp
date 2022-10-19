@@ -1,38 +1,50 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-
-struct Node {
-    int start;
-    int end;
-    int length;
-};
-
-int compare(Node a, Node b) {
-    return a.length < b.length;
-}
-
-void Kruskal(std::vector<Node>& arr, std::vector<int>& visited) {
-    int connections_size = arr.size();
-    for (int i = 0; i < connections_size; i++) {
-        std::cin >> arr[i].start >> arr[i].end >> arr[i].length;
-    }
-    std::sort(arr.begin(), arr.end(), compare);
-    for (int i = 0; i < connections_size; i++) {
-        if (!visited[arr[i].start] || !visited[arr[i].end]) {
-            visited[arr[i].start] = true;
-            visited[arr[i].end] = true;
-            std::cout << arr[i].start << arr[i].end << arr[i].length << std::endl;
-        }
-    }
-}
+#include <string>
+#include <iostream>
+#include <climits>
+using namespace std;
 
 int main() {
-    int vertex = 0, connection = 0;
-    std::cout << "Please enter vertex value and connections value:" << std::endl;
-    std::cin >> vertex >> connection;
-    std::vector<Node> arr(connection);
-    std::vector<int> visited(vertex);
-    std::cout << "Please enter vertexs and thouse weight:" << std::endl;
-    Kruskal(arr, visited);
+    std::string a,n;
+    long long *A, *B, *C, length, l,cc;
+    std::cin >> a;
+    std::cin >> n;
+    A = new long long [a.size()];
+    B = new long long [n.size()];
+
+    for (int i = 0; i < a.size(); i++)
+    
+        A[i] = a[a.size() - i - 1] - '0';
+        
+    for (int i = 0; i < n.size(); i++)
+        B[i] = n[n.size() - i - 1] - '0';
+
+    length = a.size() + n.size() - 1 ;
+    l = length;
+    C = new long long [length];
+    for (int ix = 0; ix < length; ix++) {
+        C[ix] = 0;
+    }
+
+    for (int ix = 0; ix < a.size(); ix++) {
+        for (int jx = 0; jx < n.size(); jx++) {
+            C[ix + jx] += A[ix] * B[jx];
+          
+        }
+    }
+
+    for (int ix = 0; ix < length-1; ix++) {
+        C[ix + 1] +=  C[ix] / 10;
+        C[ix] %= 10;
+
+    }
+
+    while (C[length] == 0)
+        length-- ;
+    for(int i=length; i>-1; i--) {
+        cout<<C[i];
+    }
+    std::cout << std::endl;
+
+    return 0;
+
 }
