@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-#define N 4
-#define K 2
+#define N 10
+#define K 5
 
 int main() {
-    long int Array[N/K] = {10,99};
-    long int Array2[N/K] = {10,99};  
+    long double Array[N/K] = {99999,99999};
+    long double Array2[N/K] = {99999,99999};  
     long int temp = 0, cnt = 0;
 
     for(int j = 0; j < 1; j++)  {
@@ -15,7 +15,7 @@ int main() {
         Array2[j+1]))*pow(10,K)+(Array[j+1]*Array2[j+1]));
     }
 
-    if (Array[0] % 10 == 0 && Array[1] % 10 == 0) {
+    if ((int)Array[0] % 10 == 0 && (int)Array[1] % 10 == 0) {
         cnt = 1;
     } else {
         cnt += 10 + N + K;
