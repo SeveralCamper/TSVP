@@ -5,7 +5,7 @@
 #include <limits>
 #include <algorithm>
 
-const int M = 8;
+const int M = 301;
 const int COL = 3;
 const int N = COL + 2;
 
@@ -60,7 +60,6 @@ int main() {
             Result[i][1] = 0;
         } else {
             Result[i][1] = Max;
-
             for(int j = 0; j < COL; j++) {
                 if (j == iTemp) {
                     Result[i][j + 2] = Result[i - MC[j][0]][j + 2] + 1;
@@ -86,13 +85,20 @@ int main() {
 
     std::cout << std::endl;
     std::cout << std::endl;
-    std::cout << "Final Cost: "<< std::endl;
+    std::cout << "Final Cost: "<< "\t1" << "\t2" << "\t3" << std::endl;
     for(int i = M-1; i < M; i++) {
         for(int j = 1; j < N; j++) {
-            std::cout << Result[i][j] << "\t";
+            if (j == 1) {
+                std::cout << Result[i][j] << "\t\t";
+            } else {
+                std::cout << Result[i][j] << "\t";
+
+            }
         }
         std::cout << std::endl;
     }
+    int res_arr = (Result[M - 1][2]  * MC[0][0] + Result[M - 1][3] * MC[1][0] + Result[M - 1][4] * MC[2][0]);
+    std::cout << "Resault Weight: " << res_arr << "\t" << std::endl;
 
     return 0;
 }
