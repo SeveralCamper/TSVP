@@ -9,10 +9,7 @@
 
 //  Computing performance evaluation
 
-//  gettimeofday()
-struct timeval time_val_1, time_val_2, data_time_val;
-
-double *CPE_check(int rows, int cols);
+void CPE_check(int matrix_size, int operation_amount);
 
 double time_start();
 double time_stop();
